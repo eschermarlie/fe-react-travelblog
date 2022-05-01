@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import {Grid, Paper, TextField} from "@mui/material";
 import axios from "axios";
 import {useState} from "react";
+import { useNavigate } from 'react-router-dom';
 
 const CreatePost = () => {
     const [formData, setData] = useState({
@@ -14,8 +15,7 @@ const CreatePost = () => {
         publishDate: "1 January 2022",
         author: 'admin'
     });
-
-
+    const navigate = useNavigate();
     function handleSubmitPost(){
         if(formData.imageURL === ''){
             formData.imageURL = 'https://ika.amayogyakarta.ac.id/uploads/loker/no-image.png';
@@ -28,6 +28,7 @@ const CreatePost = () => {
                 data:formData
             })
                 .then(response => {
+                    navigate('/');
                     }
                 )
                 .catch(error => {
