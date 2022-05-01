@@ -1,17 +1,6 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import { Link } from 'react-router-dom';
 import {Grid, Paper, TextField} from "@mui/material";
 import axios from "axios";
 import {useState} from "react";
@@ -28,6 +17,9 @@ const CreatePost = () => {
 
 
     function handleSubmitPost(){
+        if(formData.imageURL === ''){
+            formData.imageURL = 'https://ika.amayogyakarta.ac.id/uploads/loker/no-image.png';
+        }
             axios({
                 method: 'post',
                 url: 'http://localhost:8080/blogEntries',
@@ -36,7 +28,6 @@ const CreatePost = () => {
                 data:formData
             })
                 .then(response => {
-                        console.log("create success", response)
                     }
                 )
                 .catch(error => {
@@ -62,23 +53,33 @@ const CreatePost = () => {
                     <TextField
                         required
                         id="standard-required"
-                        label="Title"
+                        label="Author"
                         defaultValue=""
                         variant="standard"
                         sx={{width: "100%", my:"5px"}}
-                        onChange={value => setData({ ...formData,
-                            title: value
+                        onChange={event => setData({ ...formData,
+                            author: event.target.value
                         })}
                     />
                     <TextField
                         required
                         id="standard-required"
+                        label="Title"
+                        defaultValue=""
+                        variant="standard"
+                        sx={{width: "100%", my:"5px"}}
+                        onChange={event => setData({ ...formData,
+                            title: event.target.value
+                        })}
+                    />
+                    <TextField
+                        id="standard-required"
                         label="Image URL"
                         defaultValue=""
                         variant="standard"
                         sx={{width: "100%", my:"5px"}}
-                        onChange={value => setData({ ...formData,
-                            imageURL: value
+                        onChange={event => setData({ ...formData,
+                            imageURL: event.target.value
                         })}
                     />
                     <TextField
@@ -89,11 +90,14 @@ const CreatePost = () => {
                         defaultValue=""
                         variant="standard"
                         sx={{width: "100%", my:"5px"}}
-                        onChange={value => setData({ ...formData,
-                            content: value
-                        })}
+                        onChange={event =>
+                            setData({
+                                ...formData,
+                                content: event.target.value
+                            }
+                        )}
                     />
-                    <Button size="small" onClick={handleSubmitPost()}>Create Post</Button>
+                    <Button size="small" onClick={handleSubmitPost}>Create Post</Button>
 
                 </Paper>
             </Grid>
