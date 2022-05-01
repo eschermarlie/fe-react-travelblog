@@ -6,7 +6,6 @@ import {Card, CardActions, CardContent, CardMedia} from "@mui/material";
 import Box from "@mui/material/Box";
 
 const CardComponent = ({data}) => {
-console.log("DATA", data)
     return (
         <Card sx={{m:"10px"}}>
             <CardMedia

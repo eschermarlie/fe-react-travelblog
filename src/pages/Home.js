@@ -12,10 +12,9 @@ const Home = () => {
     const [error, setError] = useState('');
 
     function getData(){
-        console.log("CALLED")
         axios({
             method: 'get',
-            url: 'http://localhost:8080/blogEntries',
+            url: 'https://qdr-backend.herokuapp.com/blogEntries',
             headers: {
             }
         })

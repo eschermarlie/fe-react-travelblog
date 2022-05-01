@@ -22,7 +22,7 @@ const CreatePost = () => {
         }
             axios({
                 method: 'post',
-                url: 'http://localhost:8080/blogEntries',
+                url: 'https://qdr-backend.herokuapp.com/blogEntries',
                 headers: {
                 },
                 data:formData
@@ -31,7 +31,6 @@ const CreatePost = () => {
                     }
                 )
                 .catch(error => {
-                    console.log('error', error);
                 });
     }
 

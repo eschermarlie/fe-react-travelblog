@@ -12,10 +12,9 @@ const ViewPost = () => {
   const [error, setError] = useState('');
 
     function getPostDetail(){
-        console.log("CALLED", topicId)
         axios({
             method: 'get',
-            url: 'http://localhost:8080/blogEntries/'+topicId,
+            url: 'https://qdr-backend.herokuapp.com//blogEntries/'+topicId,
             headers: {
             }
         })
@@ -28,23 +27,19 @@ const ViewPost = () => {
     }
 
     function setViewCounter(currentData){
-        console.log("updating ", topicId);
         let newTotalView = currentData.totalViews + 1;
         currentData['totalViews'] = newTotalView;
-        console.log("data sent", currentData);
         axios({
             method: 'post',
-            url: 'http://localhost:8080/blogEntries',
+            url: 'https://qdr-backend.herokuapp.com//blogEntries',
             headers: {
             },
             data:currentData
         })
             .then(response => {
-                console.log("update success", response)
             }
             )
             .catch(error => {
-                console.log('error', error);
                 setError({ error })
             });
     }
