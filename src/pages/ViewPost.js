@@ -14,7 +14,7 @@ const ViewPost = () => {
     function getPostDetail(){
         axios({
             method: 'get',
-            url: 'https://qdr-backend.herokuapp.com//blogEntries/'+topicId,
+            url: 'https://qdr-backend.herokuapp.com/blogEntries/'+topicId,
             headers: {
             }
         })
@@ -31,7 +31,7 @@ const ViewPost = () => {
         currentData['totalViews'] = newTotalView;
         axios({
             method: 'post',
-            url: 'https://qdr-backend.herokuapp.com//blogEntries',
+            url: 'https://qdr-backend.herokuapp.com/blogEntries',
             headers: {
             },
             data:currentData
